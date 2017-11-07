@@ -2,7 +2,9 @@ package Model.Implementations;
 
 import Model.Interfaces.TaskInterface;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Opsymonroe on 06.11.2017.
@@ -10,7 +12,7 @@ import java.util.Date;
 public class Task implements TaskInterface{
     private String name;
     private String discription;
-    private Date date;
+    private GregorianCalendar date;
     private String[] contacts;
 
     public String getName() {
@@ -29,11 +31,11 @@ public class Task implements TaskInterface{
         this.discription = discription;
     }
 
-    public Date getDate() {
+    public GregorianCalendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(GregorianCalendar date) {
         this.date = date;
     }
 
@@ -45,11 +47,26 @@ public class Task implements TaskInterface{
         this.contacts = contacts;
     }
 
-    public Task(String name, String discription, Date date, String [] contacts){
+    public Task(String name, String discription, GregorianCalendar date, String [] contacts){
         this.name = name;
         this.discription = discription;
         this.date = date;
         this.contacts = contacts;
 
+    }
+
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("Task:\n");
+        builder.append("Name: " + getName() + " \n");
+        builder.append("Discription: " + getDiscription() + " \n");
+        builder.append("Date: " + getDate().get(Calendar.YEAR) + "-" + getDate().get(Calendar.MONTH) + "-" + getDate().get(Calendar.DAY_OF_MONTH)
+                + " " + getDate().get(Calendar.HOUR_OF_DAY) + ":" + getDate().get(Calendar.MINUTE) + " \n");
+        builder.append("Contacts: ");
+        for (String str: contacts) {
+            builder.append(str + "; ");
+        }
+        builder.append("\n");
+        return builder.toString();
     }
 }

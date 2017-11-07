@@ -14,6 +14,10 @@ public class TaskJournal implements TaskJournalInterface{
     ArrayList<TaskInterface> list;
     UUID userId;
 
+    public TaskJournal(ArrayList<TaskInterface> list){
+        this.list = list;
+    }
+
     public ArrayList<TaskInterface> getList() {
         return list;
     }
@@ -39,5 +43,14 @@ public class TaskJournal implements TaskJournalInterface{
     }
     public void removeTask(TaskInterface task){
         list.remove(task);
+    }
+
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("TaskJournal:\n");
+        for (TaskInterface task: list) {
+            builder.append(task.toString());
+        }
+        return builder.toString();
     }
 }

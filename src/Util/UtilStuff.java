@@ -1,4 +1,4 @@
-package Controller;
+package Util;
 
 import Model.Interfaces.TaskInterface;
 import Model.Interfaces.TaskJournalInterface;

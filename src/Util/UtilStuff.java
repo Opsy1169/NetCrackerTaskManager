@@ -4,6 +4,9 @@ import Model.Interfaces.TaskInterface;
 import Model.Interfaces.TaskJournalInterface;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Opsymonroe on 06.11.2017.
@@ -48,5 +51,26 @@ public class UtilStuff {
     }
     public static void removeTask(TaskJournalInterface journal, int index){
         journal.removeTask(index);
+    }
+
+
+    public static long getLeastTimeDelay(TaskJournalInterface journalInterface){
+
+        ArrayList<TaskInterface> tasks = journalInterface.getList();
+        Collections.sort(tasks, new Comparator<TaskInterface>() {
+            @Override
+            public int compare(TaskInterface o1, TaskInterface o2) {
+                if(o1.getDate().getTimeInMillis() < o2.getDate().getTimeInMillis())
+                    return -1;
+                if(o1.getDate().getTimeInMillis() > o2.getDate().getTimeInMillis())
+                    return 1;
+                return 0;
+            }
+        });
+        System.out.println("-----------------------getLeastTimeDelay-----------------");
+        for (TaskInterface task: tasks) {
+            System.out.println(task);
+        }
+        return tasks.get(0).getDate().getTimeInMillis() - System.currentTimeMillis();
     }
 }

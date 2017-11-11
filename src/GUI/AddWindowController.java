@@ -12,13 +12,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
  * Created by Opsymonroe on 07.11.2017.
  */
-public class NewController {
+public class AddWindowController {
 
     public static TaskInterface taskInterface;
     public static int WINDOW_STATUS;
@@ -63,11 +64,8 @@ public class NewController {
                 alert();
                 return;
             }
-
             String name = nameTF.getText();
             String discription = discriptionTA.getText();
-
-
             String time = timePicker.getText();
             String[] hm = time.split(":");
             int[] hours = null;
@@ -91,7 +89,14 @@ public class NewController {
 
 
             String[] contacts = {firstContactTF.getText(), secondContactTF.getText(), thirdContactTF.getText()};
-            taskInterface = new Task(name, discription, new GregorianCalendar(DateNum[0], DateNum[1], DateNum[2], hours[0], hours[1]), contacts);
+            GregorianCalendar calendar = new GregorianCalendar(DateNum[0], DateNum[1]-1, DateNum[2], hours[0], hours[1]);
+            //LocalDate localDate = new LocalDate();
+            System.out.println(calendar);
+            System.out.println(calendar.getTimeInMillis());
+            System.out.println(System.currentTimeMillis());
+            if(calendar.getTimeInMillis() < System.currentTimeMillis())
+                throw new IllegalArgumentException("Date cant be less than current time");
+            taskInterface = new Task(name, discription, calendar, contacts);
             System.out.println(taskInterface);
             WINDOW_STATUS = OK;
             Stage stage = (Stage) anchorPane.getScene().getWindow();

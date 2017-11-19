@@ -2,10 +2,9 @@ package Model.Implementations;
 
 import Model.Interfaces.TaskInterface;
 import Model.Interfaces.TaskJournalInterface;
+import Util.TaskDateComparator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by Opsymonroe on 06.11.2017.
@@ -15,6 +14,7 @@ public class TaskJournal implements TaskJournalInterface{
     UUID userId;
 
     public TaskJournal(ArrayList<TaskInterface> list){
+        Collections.sort(list, new TaskDateComparator());
         this.list = list;
     }
 
@@ -41,6 +41,7 @@ public class TaskJournal implements TaskJournalInterface{
     public void removeTask(int index){
         list.remove(index);
     }
+
     public void removeTask(TaskInterface task){
         list.remove(task);
     }

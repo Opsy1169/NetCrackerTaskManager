@@ -49,6 +49,8 @@ public class Task implements TaskInterface{
 
     public Task(String name, String discription, GregorianCalendar date, String [] contacts){
         this.name = name;
+        if(date.getTimeInMillis() < System.currentTimeMillis())
+            throw new IllegalArgumentException();
         this.discription = discription;
         this.date = date;
         this.contacts = contacts;

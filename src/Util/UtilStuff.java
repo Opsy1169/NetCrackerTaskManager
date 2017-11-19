@@ -12,6 +12,7 @@ import java.util.Comparator;
  * Created by Opsymonroe on 06.11.2017.
  */
 public class UtilStuff {
+    public static boolean CHANGED = false;
 
     public static void saveJournal(TaskJournalInterface journal){
         try {
@@ -31,12 +32,12 @@ public class UtilStuff {
             DataInputStream in = new DataInputStream(new FileInputStream("SavedJournal.txt"));
             ObjectInputStream objIn = new ObjectInputStream(in);
             journal = (TaskJournalInterface) objIn.readObject();
+            int before = journal.getList().size();
+            journal = deleteAllPassedDates(journal);
+            if(before > journal.getList().size())
+                CHANGED = true;
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return journal;
@@ -57,20 +58,29 @@ public class UtilStuff {
     public static long getLeastTimeDelay(TaskJournalInterface journalInterface){
 
         ArrayList<TaskInterface> tasks = journalInterface.getList();
-        Collections.sort(tasks, new Comparator<TaskInterface>() {
-            @Override
-            public int compare(TaskInterface o1, TaskInterface o2) {
-                if(o1.getDate().getTimeInMillis() < o2.getDate().getTimeInMillis())
-                    return -1;
-                if(o1.getDate().getTimeInMillis() > o2.getDate().getTimeInMillis())
-                    return 1;
-                return 0;
-            }
+        Collections.sort(tasks, (o1, o2) -> {
+            if(o1.getDate().getTimeInMillis() < o2.getDate().getTimeInMillis())
+                return -1;
+            if(o1.getDate().getTimeInMillis() > o2.getDate().getTimeInMillis())
+                return 1;
+            return 0;
         });
         System.out.println("-----------------------getLeastTimeDelay-----------------");
         for (TaskInterface task: tasks) {
             System.out.println(task);
         }
         return tasks.get(0).getDate().getTimeInMillis() - System.currentTimeMillis();
+    }
+
+    public static TaskJournalInterface deleteAllPassedDates(TaskJournalInterface journalInterface){
+        ArrayList<TaskInterface> tasks = journalInterface.getList();
+        ArrayList<TaskInterface> deleted = new ArrayList<>();
+        for (TaskInterface task : tasks) {
+            if(task.getDate().getTimeInMillis() < System.currentTimeMillis())
+                deleted.add( task);
+        }
+        tasks.removeAll(deleted);
+        journalInterface.setList(tasks);
+        return journalInterface;
     }
 }

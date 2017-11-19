@@ -13,17 +13,17 @@ public class AlertTimerTask extends TimerTask {
     private Controller controller;
     private TaskJournalInterface journalInterface;
 
-    public AlertTimerTask(Controller controller, TaskJournalInterface journalInterface){
+    public AlertTimerTask(Controller controller, TaskJournalInterface journalInterface) {
         this.controller = controller;
         this.journalInterface = journalInterface;
     }
+
     @Override
     public void run() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                controller.onDatePassed();
-            }
+        Platform.runLater(() ->
+        {
+            System.out.println("выполнилось из треда" + Thread.currentThread().getId());
+            controller.onDatePassed();
         });
         //controller.onDatePassed();
 

@@ -43,10 +43,6 @@ public class AddWindowController {
     TextField thirdContactTF;
 
 
-    public void alert() {
-        System.out.println("alert");
-    }
-
     public void clearFields() {
         nameTF.clear();
         discriptionTA.clear();
@@ -60,9 +56,8 @@ public class AddWindowController {
     public void onOkButtonClicked(ActionEvent actionEvent) {
 
         try {
-            if (nameTF.getText() == null) {
-                alert();
-                return;
+            if (nameTF.getText().equals("")) {
+                throw new IllegalArgumentException("Empty task name field");
             }
             String name = nameTF.getText();
             String discription = discriptionTA.getText();
@@ -70,30 +65,22 @@ public class AddWindowController {
             String[] hm = time.split(":");
             int[] hours = null;
             String date = null;
-
             date = datePicker.getValue().toString();
-            if (date == null) {
-                alert();
-                return;
+            if (date.trim().equals("")) {
+                throw new IllegalArgumentException("Empty date field");
             }
 
-            System.out.println(date);
             hours = new int[]{Integer.parseInt(hm[0]), Integer.parseInt(hm[1])};
             if (hours[0] > 23 || hours[0] < 0 || hours[1] > 59 || hours[1] < 0)
-                alert();
+                throw new IllegalArgumentException("Wrong time format");
             String[] dateArr = date.split("-");
             int[] DateNum = new int[dateArr.length];
             for (int i = 0; i < dateArr.length; i++) {
                 DateNum[i] = Integer.parseInt(dateArr[i]);
             }
 
-
             String[] contacts = {firstContactTF.getText(), secondContactTF.getText(), thirdContactTF.getText()};
             GregorianCalendar calendar = new GregorianCalendar(DateNum[0], DateNum[1]-1, DateNum[2], hours[0], hours[1]);
-            //LocalDate localDate = new LocalDate();
-            System.out.println(calendar);
-            System.out.println(calendar.getTimeInMillis());
-            System.out.println(System.currentTimeMillis());
             if(calendar.getTimeInMillis() < System.currentTimeMillis())
                 throw new IllegalArgumentException("Date cant be less than current time");
             taskInterface = new Task(name, discription, calendar, contacts);
@@ -104,15 +91,13 @@ public class AddWindowController {
             stage.hide();
 
 
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-            alert.setTitle("Something went wrong");
-            alert.setHeaderText(null);
-            alert.setContentText("Wrong Input");
-            alert.showAndWait();
-            WINDOW_STATUS = CANCELLED;
-
+        }catch (NumberFormatException exc){
+            alert("Time field is empty");
+        }
+        catch (IllegalArgumentException e) {
+            alert(e.getMessage());
+        }catch (NullPointerException ex){
+            alert("Date field is empty");
         }
     }
 
@@ -121,6 +106,15 @@ public class AddWindowController {
         WINDOW_STATUS = CANCELLED;
         clearFields();
         stage.hide();
+    }
+
+    public void alert(String message){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Something went wrong");
+        alert.setHeaderText(null);
+        alert.setContentText("Wrong Input: " + message);
+        alert.showAndWait();
+        WINDOW_STATUS = CANCELLED;
     }
 
 }

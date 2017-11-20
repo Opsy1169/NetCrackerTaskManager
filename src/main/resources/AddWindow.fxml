@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddWindowController">
+   <children>
+      <HBox alignment="CENTER" layoutY="37.0" prefHeight="69.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
+         <children>
+            <Label text="Task name">
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin></Label>
+            <TextField fx:id="nameTF" promptText="Name" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="114.0" prefHeight="99.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label prefHeight="21.0" prefWidth="106.0" text="Task discription">
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin></Label>
+            <TextArea fx:id="discriptionTA" prefHeight="99.0" prefWidth="224.0" promptText="discription" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="203.0" prefHeight="99.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="76.0" text="Date">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="74.0" prefWidth="76.0" text="Time" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="252.0">
+               <children>
+                  <DatePicker fx:id="datePicker">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <TextField fx:id="timePicker" minWidth="-Infinity" prefHeight="31.0" prefWidth="300.0" promptText="HH:MM" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="250.0" prefHeight="99.0" prefWidth="500.0" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="TOP_LEFT" prefHeight="21.0" prefWidth="92.0" text="Contacts" />
+            <VBox prefHeight="100.0" prefWidth="351.0">
+               <children>
+                  <TextField fx:id="firstContactTF" prefHeight="31.0" prefWidth="159.0" />
+                  <TextField fx:id="secondContactTF" />
+                  <TextField fx:id="thirdContactTF" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_RIGHT" layoutY="420.0" prefHeight="81.0" prefWidth="500.0">
+         <children>
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#onOkButtonClicked" prefHeight="31.0" prefWidth="69.0" text="Ok">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonCLicked" prefHeight="31.0" prefWidth="71.0" text="Cancel">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

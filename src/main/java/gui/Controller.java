@@ -1,10 +1,10 @@
-package GUI;
+package gui;
 
-import Model.Implementations.TaskJournal;
-import Model.Interfaces.TaskInterface;
-import Util.AlertTimerTask;
-import Util.TaskDateComparator;
-import Util.UtilStuff;
+import model.implementations.TaskJournal;
+import model.interfaces.TaskInterface;
+import util.AlertTimerTask;
+import util.TaskDateComparator;
+import util.UtilStuff;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -91,7 +91,6 @@ public class Controller implements Initializable {
                 journal.addTask(AddWindowController.taskInterface);
                 Collections.sort(journal.getList(), Comparator.comparing(TaskInterface::getDate));
                 tasks = FXCollections.observableArrayList(journal.getList());
-                System.out.println("--------------OnAddTaskButtonClicked-------------------");
                 System.out.println(journal);
                 setTimer();
                 listView.setItems(tasks);
@@ -102,7 +101,6 @@ public class Controller implements Initializable {
     }
 
     public void onDatePassed() {
-        System.out.println("выполнилось из треда" + Thread.currentThread().getId());
         Stage confirmStage = new Stage();
         Parent rootComplete = null;
         CompleteTaskController taskController = null;
@@ -120,7 +118,6 @@ public class Controller implements Initializable {
         confirmStage.initModality(Modality.APPLICATION_MODAL);
         //confirmStage.initOwner(mainVbox.getScene().getWindow());
         confirmStage.showAndWait();
-        System.out.println("Date passed");
     }
 
     public void setTimer() {
@@ -128,11 +125,7 @@ public class Controller implements Initializable {
         timer.purge();
         timer = new Timer();
         AlertTimerTask alertTimerTask = new AlertTimerTask(this, journal);
-
-        System.out.println("-------------setTimer-------------------");
         long time = UtilStuff.getLeastTimeDelay(journal);
-        System.out.println(time);
-        System.out.println("выполнилось из треда" + Thread.currentThread().getId());
         timer.schedule(alertTimerTask, time);
     }
     private void alert(String s){

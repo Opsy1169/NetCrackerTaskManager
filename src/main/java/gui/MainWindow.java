@@ -1,6 +1,6 @@
-package GUI;
+package gui;
 
-import Util.UtilStuff;
+import util.UtilStuff;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,7 +27,6 @@ public class MainWindow extends Application {
             Controller.timer.cancel();
             Controller.timer.purge();
             for (Thread t : Thread.getAllStackTraces().keySet()) {
-                System.out.println(t.getName());
                 if (t.getState() == Thread.State.RUNNABLE)
                     t.interrupt();
             }

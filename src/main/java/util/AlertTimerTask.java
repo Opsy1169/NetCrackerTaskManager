@@ -1,7 +1,7 @@
-package Util;
+package util;
 
-import GUI.Controller;
-import Model.Interfaces.TaskJournalInterface;
+import gui.Controller;
+import model.interfaces.TaskJournalInterface;
 import javafx.application.Platform;
 
 import java.util.TimerTask;
@@ -22,7 +22,6 @@ public class AlertTimerTask extends TimerTask {
     public void run() {
         Platform.runLater(() ->
         {
-            System.out.println("выполнилось из треда" + Thread.currentThread().getId());
             controller.onDatePassed();
         });
         //controller.onDatePassed();

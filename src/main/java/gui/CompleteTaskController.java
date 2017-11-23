@@ -1,7 +1,6 @@
-package GUI;
+package gui;
 
-import Model.Implementations.Task;
-import Model.Interfaces.TaskInterface;
+import model.interfaces.TaskInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -33,9 +32,7 @@ public class CompleteTaskController {
     AnchorPane confirmAP;
 
     public void onConfirmButtonClicked(ActionEvent actionEvent) {
-        System.out.println("выполнилось из  треда" + Thread.currentThread().getId());
         Thread.currentThread().interrupt();
-        System.out.println("выполнилось из треда" + Thread.currentThread().getId());
 
         Controller.timer.cancel();
         Controller.timer.purge();
@@ -86,8 +83,6 @@ public class CompleteTaskController {
             controller.update();
             //taskInterface = new Task(name, discription, calendar, contacts);
             stage.hide();
-            System.out.println("выполнилось из какого-то треда");
-            System.out.println("выполнилось из какого-то треда");
 
 
         /*А здесь мы сохраним введенные изменения, чтобы потом отобразить их в листе*/

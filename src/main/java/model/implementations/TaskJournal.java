@@ -1,8 +1,8 @@
-package Model.Implementations;
+package model.implementations;
 
-import Model.Interfaces.TaskInterface;
-import Model.Interfaces.TaskJournalInterface;
-import Util.TaskDateComparator;
+import model.interfaces.TaskInterface;
+import model.interfaces.TaskJournalInterface;
+import util.TaskDateComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;

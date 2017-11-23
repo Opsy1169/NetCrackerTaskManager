@@ -1,4 +1,4 @@
-package Model.Interfaces;
+package model.interfaces;
 
 import java.io.Serializable;
 import java.util.GregorianCalendar;

@@ -1,7 +1,7 @@
-package GUI;
+package gui;
 
-import Model.Implementations.Task;
-import Model.Interfaces.TaskInterface;
+import model.implementations.Task;
+import model.interfaces.TaskInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,9 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**

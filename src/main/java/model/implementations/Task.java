@@ -1,6 +1,6 @@
-package Model.Implementations;
+package model.implementations;
 
-import Model.Interfaces.TaskInterface;
+import model.interfaces.TaskInterface;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

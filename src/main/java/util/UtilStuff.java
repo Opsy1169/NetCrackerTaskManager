@@ -1,7 +1,7 @@
-package Util;
+package util;
 
-import Model.Interfaces.TaskInterface;
-import Model.Interfaces.TaskJournalInterface;
+import model.interfaces.TaskInterface;
+import model.interfaces.TaskJournalInterface;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -64,7 +64,6 @@ public class UtilStuff {
                 return 1;
             return 0;
         });
-        System.out.println("-----------------------getLeastTimeDelay-----------------");
         for (TaskInterface task: tasks) {
             System.out.println(task);
         }

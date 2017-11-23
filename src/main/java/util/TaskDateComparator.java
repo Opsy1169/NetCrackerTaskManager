@@ -1,6 +1,6 @@
-package Util;
+package util;
 
-import Model.Interfaces.TaskInterface;
+import model.interfaces.TaskInterface;
 
 import java.util.Comparator;
 

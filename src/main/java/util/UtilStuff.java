@@ -24,7 +24,7 @@ public class UtilStuff {
             e.printStackTrace();
         }
     }
-
+//add try-with-resources and fileNotFound exception
     public static TaskJournalInterface loadJournal(){
         TaskJournalInterface journal = null;
         try {

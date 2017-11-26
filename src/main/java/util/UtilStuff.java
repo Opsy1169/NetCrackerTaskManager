@@ -80,7 +80,7 @@ public class UtilStuff {
         return journalInterface;
     }
     //just checking pull
-    public static mul(int a, int b){
+    public static int mul(int a, int b){
         return a*b;
     }
 }

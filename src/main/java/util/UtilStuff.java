@@ -23,6 +23,7 @@ public class UtilStuff {
             e.printStackTrace();
         }
     }
+    
     public static TaskJournalInterface loadJournal(){
         TaskJournalInterface journal = null;
         try(DataInputStream in = new DataInputStream(new FileInputStream("SavedJournal.txt"));
@@ -77,5 +78,9 @@ public class UtilStuff {
         tasks.removeAll(deleted);
         journalInterface.setList(tasks);
         return journalInterface;
+    }
+    //just checking pull
+    public static mul(int a, int b){
+        return a*b;
     }
 }

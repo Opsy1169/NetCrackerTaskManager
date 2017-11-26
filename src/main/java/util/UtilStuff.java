@@ -14,9 +14,8 @@ public class UtilStuff {
     public static boolean CHANGED = false;
 
     public static void saveJournal(TaskJournalInterface journal){
-        try {
-            DataOutputStream out = new DataOutputStream(new FileOutputStream("SavedJournal.txt"));
-            ObjectOutputStream objOut = new ObjectOutputStream(out);
+        try (DataOutputStream out = new DataOutputStream(new FileOutputStream("SavedJournal.txt"));
+             ObjectOutputStream objOut = new ObjectOutputStream(out)){
             objOut.writeObject(journal);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -26,9 +25,8 @@ public class UtilStuff {
     }
     public static TaskJournalInterface loadJournal(){
         TaskJournalInterface journal = null;
-        try {
-            DataInputStream in = new DataInputStream(new FileInputStream("SavedJournal.txt"));
-            ObjectInputStream objIn = new ObjectInputStream(in);
+        try(DataInputStream in = new DataInputStream(new FileInputStream("SavedJournal.txt"));
+            ObjectInputStream objIn = new ObjectInputStream(in)) {
             journal = (TaskJournalInterface) objIn.readObject();
             int before = journal.getList().size();
             journal = deleteAllPassedDates(journal);
